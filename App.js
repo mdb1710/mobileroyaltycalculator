@@ -1,21 +1,46 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react'
+import { createAppContainer, createSwitchNavigator } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack';
+import { createBottomTabNavigator } from 'react-navigation-tabs';
 
-export default function App() {
+import WelcomeScreen from './src/screens/WelcomeScreen'
+import FormScreen from './src/screens/FormScreen'
+import { CalcProvider } from './src/context/CalcContext'
+import ServiceSelectionScreen from './src/screens/ServiceSelectionScreen'
+import MonthsScreen from './src/screens/MonthsScreen'
+import ResultsScreen from './src/screens/ResultsScreen'
+
+// const navigator = createStackNavigator({
+//   Welcome: WelcomeScreen,
+//   Form: FormScreen,
+//   Service: ServiceSelectionScreen,
+//   Months: MonthsScreen,
+//   Results: ResultsScreen
+// }, {
+//   initialRouteName: 'Welcome',
+//   defaultNavigationOptions: {
+//     title: 'Royalty Calculator'
+//   }
+// })
+
+const switchNavigator = createSwitchNavigator({
+  Welcome: WelcomeScreen,
+  formFlow: createStackNavigator({
+    Form: FormScreen,
+    Service: ServiceSelectionScreen,
+    Months: MonthsScreen
+  }),
+  resultsFlow: createStackNavigator({
+    Results: ResultsScreen
+  })
+})
+
+const App = createAppContainer(switchNavigator);
+
+export default () => {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+    <CalcProvider>
+      <App />
+    </CalcProvider>
+  )
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
