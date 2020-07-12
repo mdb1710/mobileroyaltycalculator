@@ -1,22 +1,21 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-native'
+import { View, Text, StyleSheet, TextInput, Button } from 'react-native'
 
-const FormScreen = () => {
+const FormScreen = ({ navigation }) => {
   const [streams, setStreams] = useState('');
   const { label, input } = styles;
 
-  const onPress = () => {
-    console.log('this many', streams);
-  }
+  // const onPress = () => {
+  //   console.log('this many', streams);
+  //
+  // }
 
   return(
     <View>
       <Text>Enter The Number of Streams</Text>
       <TextInput style={input} value={streams} onChangeText={(text) => setStreams(text)}/>
-      <TouchableOpacity onPress={onPress}>
-        <Text>Submit</Text>
-      </TouchableOpacity>
       <Text>You chose {streams}</Text>
+      <Button title="Go To Service" onPress={() => navigation.navigate('Service')}/>
     </View>
   )
 };

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, SafeAreaView, Button, TouchableOpacity } from 'react-native';
 
-const ServiceSelectionScreen = () => {
+const ServiceSelectionScreen = ({ navigation }) => {
   const [service, setService] = useState('')
   const handleServiceChange = name => {
     setService(name);
@@ -15,6 +15,7 @@ const ServiceSelectionScreen = () => {
       <Button title="Soundcloud" onPress={() => handleServiceChange('Soundcloud')}/>
       <Button title="Spotify" onPress={() => handleServiceChange('Spotify')}/>
       <Text>You Chose {service}</Text>
+      <Button title="Go To Months" onPress={() => navigation.navigate('Months')}/>
     </SafeAreaView>
   )
 }
