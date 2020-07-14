@@ -15,6 +15,7 @@ const FormScreen = ({ navigation }) => {
   const directToService = () => {
     addStreams(streams)
     console.log(searchTerms)
+    searchTerms.selectedStreams = streams;
     navigation.navigate('Service')
   }
 
