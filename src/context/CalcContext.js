@@ -14,6 +14,7 @@ const searchTerms = {
   selectedMonths: ''
 }
 
+
 const searchReducer = (state, action) => {
   switch (action.type) {
     case 'add_streams':
@@ -44,6 +45,13 @@ export const CalcProvider = ({ children }) => {
   //   dispatch({ type: 'add_streams', payload: streams });
   // }
 
+  const rates = {
+    apple: .00735,
+    youtube: .00069,
+    spotify: .00437,
+    soundcloud: .003275
+  }
+
   const addStreams = streams => {
     dispatch({ type: 'add_streams', payload: {newStreams: streams} })
   }
@@ -58,7 +66,7 @@ export const CalcProvider = ({ children }) => {
 
   //state = searchTerms
 
-  return <CalcContext.Provider value={{ state, addStreams, addService, addMonths }}>{children}</CalcContext.Provider>
+  return <CalcContext.Provider value={{ state, rates, addStreams, addService, addMonths }}>{children}</CalcContext.Provider>
 };
 
 export default CalcContext;
