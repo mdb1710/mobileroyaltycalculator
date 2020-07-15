@@ -3,20 +3,20 @@ import { View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-nativ
 import CalcContext from '../context/CalcContext'
 
 const MonthsScreen = ({ navigation }) => {
-  const { searchTerms, addMonths } = useContext(CalcContext);
+  const { state, addMonths } = useContext(CalcContext);
 
   const [months, setMonths] = useState('')
   const { input, label, submitStyle } = styles;
 
-  const seeMonths = () => {
-    console.log(months)
-  }
+  // const seeMonths = () => {
+  //   console.log(months)
+  // }
 
   const directToResults = () => {
     addMonths(months)
-    console.log(searchTerms);
-    searchTerms.selectedMonths = months;
-    console.log('Terms are now', searchTerms);
+    console.log(state);
+    // searchTerms.selectedMonths = months;
+    console.log('Terms are now', state);
     navigation.navigate('Results')
   }
 

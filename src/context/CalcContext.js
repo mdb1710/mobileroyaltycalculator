@@ -18,9 +18,9 @@ const searchReducer = (state, action) => {
   switch (action.type) {
     case 'add_streams':
       console.log('newStreams are: ', action.payload.newStreams)
-      const updatedStreams = {selectedStreams: action.payload.newStreams}
-      const testState = { ...state, ...updatedStreams }
-      console.log('state is', testState);
+      // const updatedStreams = {selectedStreams: action.payload.newStreams}
+      // const testState = { ...state, ...updatedStreams }
+      console.log('state is', state);
       // return {...state, selectedStreams: state.selectedStreams + action.payload.newStreams};
       return Object.assign({}, state, {
         selectedStreams: action.payload.newStreams
@@ -38,7 +38,7 @@ const searchReducer = (state, action) => {
 };
 
 export const CalcProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(searchReducer, searchTerms);
+  const [state = searchTerms, dispatch] = useReducer(searchReducer, searchTerms);
 
   // const addStreams = (streams) = {
   //   dispatch({ type: 'add_streams', payload: streams });
@@ -58,7 +58,7 @@ export const CalcProvider = ({ children }) => {
 
   //state = searchTerms
 
-  return <CalcContext.Provider value={{ searchTerms, addStreams, addService, addMonths }}>{children}</CalcContext.Provider>
+  return <CalcContext.Provider value={{ state, addStreams, addService, addMonths }}>{children}</CalcContext.Provider>
 };
 
 export default CalcContext;

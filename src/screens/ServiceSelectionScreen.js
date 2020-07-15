@@ -4,7 +4,7 @@ import CalcContext from '../context/CalcContext'
 
 const ServiceSelectionScreen = ({ navigation }) => {
   const [service, setService] = useState('')
-  const { searchTerms, addService } = useContext(CalcContext)
+  const { state, addService } = useContext(CalcContext)
 
   // console.log('Search Term are now', searchTerms);
 
@@ -15,8 +15,9 @@ const ServiceSelectionScreen = ({ navigation }) => {
 
   const directToMonths = () => {
     addService(service);
-    console.log('Search Term are now', searchTerms);
-    searchTerms.selectedService = service;
+    console.log('Search Term are now', state);
+    // searchTerms.selectedService = service;
+    console.log('Is service added?', state);
     navigation.navigate('Months')
   }
   return (

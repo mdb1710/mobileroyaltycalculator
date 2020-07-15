@@ -6,7 +6,7 @@ const FormScreen = ({ navigation }) => {
   const [streams, setStreams] = useState('');
   const { label, input } = styles;
 
-  const { searchTerms, addStreams } = useContext(CalcContext)
+  const { addStreams } = useContext(CalcContext)
   // const onPress = () => {
   //   console.log('this many', streams);
   //
@@ -14,8 +14,8 @@ const FormScreen = ({ navigation }) => {
 
   const directToService = () => {
     addStreams(streams)
-    console.log(searchTerms)
-    searchTerms.selectedStreams = streams;
+    console.log('First time', streams)
+    // searchTerms.selectedStreams = streams;
     navigation.navigate('Service')
   }
 
