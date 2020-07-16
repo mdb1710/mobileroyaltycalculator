@@ -1,16 +1,21 @@
 import React, { useState, useContext } from 'react';
-import { View, Text, StyleSheet, TextInput, Button } from 'react-native'
+import { View, StyleSheet } from 'react-native'
 import CalcContext from '../context/CalcContext'
+import { Input, Text, Button } from 'react-native-elements';
+
+const streamInput = React.createRef();
 
 const FormScreen = ({ navigation }) => {
   const [streams, setStreams] = useState('');
-  const { label, input } = styles;
+  const { label, input, button } = styles;
 
   const { addStreams } = useContext(CalcContext)
   // const onPress = () => {
   //   console.log('this many', streams);
   //
   // }
+
+
 
   const directToService = () => {
     addStreams(streams)
@@ -27,10 +32,17 @@ const FormScreen = ({ navigation }) => {
 
   return(
     <View>
-      <Text>Enter The Number of Streams</Text>
-      <TextInput style={input} value={streams} onChangeText={(text) => handleStreamChange(text)}/>
-      <Text>You chose {streams}</Text>
-      <Button title="Go To Service" onPress={() => directToService()}/>
+      <Input
+        ref={streamInput}
+        label='Enter The Number of Streams'
+        labelStyle={label}
+        inputStyle={input}
+        value={streams}
+        onChangeText={(text) => handleStreamChange(text)}
+       />
+       <Text h4>You chose {streams}</Text>
+      <Button title="Go To Service" buttonStyle={button} onPress={() => directToService()}/>
+      <Button title='Reset' buttonStyle={button} onPress={() => streamInput.current.clear()} />
     </View>
   )
 };
@@ -43,6 +55,11 @@ const styles = StyleSheet.create({
   },
   label: {
     fontSize: 20
+  },
+  button: {
+    width: '80%',
+    marginTop: 10,
+    marginBottom: 10
   }
 });
 
