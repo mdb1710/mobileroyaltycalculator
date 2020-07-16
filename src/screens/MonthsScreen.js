@@ -1,6 +1,9 @@
 import React, { useState, useContext } from 'react';
-import { View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, StyleSheet, TouchableOpacity } from 'react-native';
+import { Text, Input, Button } from 'react-native-elements';
 import CalcContext from '../context/CalcContext'
+
+const monthsInput = React.createRef()
 
 const MonthsScreen = ({ navigation }) => {
   const { state, addMonths } = useContext(CalcContext);
@@ -22,11 +25,10 @@ const MonthsScreen = ({ navigation }) => {
 
   return (
     <View>
-      <Text>Choose The Number of Months</Text>
-      <TextInput style={input} value={months} onChangeText={(text) => setMonths(text)}/>
-      <TouchableOpacity style={submitStyle} onPress={() => directToResults()}>
-        <Text>Submit</Text>
-      </TouchableOpacity>
+      <Input ref={monthsInput} label='Choose The Number of Months' labelStyle={label} inputStyle={input} value={months} onChangeText={(text) => setMonths(text)}/>
+      <Text h4>You chose {months}</Text>
+      <Button title='Submit' buttonStyle={submitStyle} onPress={() => directToResults()} />
+      <Button title='Reset' buttonStyle={submitStyle} onPress={() => monthsInput.current.clear()}/>
     </View>
   )
 }

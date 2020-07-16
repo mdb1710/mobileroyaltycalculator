@@ -1,5 +1,6 @@
 import React, {useContext, useState} from "react";
-import {View, Text, StyleSheet, Button} from "react-native";
+import {View, StyleSheet } from "react-native";
+import { Text, Button } from 'react-native-elements'
 import CalcContext from "../context/CalcContext";
 import Payout from '../components/Payout';
 
@@ -12,11 +13,6 @@ const ResultsScreen = ({ navigation }) => {
   const [serviceRate, setServiceRate] = useState(0);
 
   const seePayout = () => {
-    let appleMusic = 'Apple Music'
-    let youTube = 'YouTube'
-    let soundCloud = 'Soundcloud'
-
-
     switch (selectedService){
       case ('Apple Music'):
         console.log(selectedService, 'Apple Music')
@@ -38,16 +34,18 @@ const ResultsScreen = ({ navigation }) => {
 
   return (
     <View>
-      <Text> We will show the results here </Text>
-      <Text> Streams: {selectedStreams} </Text>
-      <Text> Service: {selectedService} </Text>
-      <Text> Months: {selectedMonths} </Text>
+      <Text h4> We will show the results here </Text>
+      <Text h4> Streams: {selectedStreams} </Text>
+      <Text h4> Service: {selectedService} </Text>
+      <Text h4> Months: {selectedMonths} </Text>
       <Button
         title="Back To Start"
+        buttonStyle={styles.button}
         onPress={() => navigation.navigate("formFlow")}
       />
       <Button
         title="See Payout"
+        buttonStyle={styles.button}
         onPress={() => seePayout()}
       />
       <Payout rate={ serviceRate }/>
@@ -55,6 +53,11 @@ const ResultsScreen = ({ navigation }) => {
   );
 };
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  button: {
+    marginTop: 10,
+    marginBottom: 10
+  }
+});
 
 export default ResultsScreen;
