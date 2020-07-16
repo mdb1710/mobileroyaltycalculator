@@ -1,6 +1,6 @@
 import React, {useContext, useState} from "react";
 import {View, StyleSheet } from "react-native";
-import { Text, Button } from 'react-native-elements'
+import { Header, Text, Button } from 'react-native-elements'
 import CalcContext from "../context/CalcContext";
 import Payout from '../components/Payout';
 
@@ -34,6 +34,12 @@ const ResultsScreen = ({ navigation }) => {
 
   return (
     <View>
+      <Header
+        backgroundColor='blue'
+        leftComponent={{ icon: 'menu', color: '#fff'}}
+        centerComponent={{ text: 'Results', style: { color: '#fff' } }}
+        rightComponent={{ icon: 'home', color: '#fff' }}
+      />
       <Text h4> We will show the results here </Text>
       <Text h4> Streams: {selectedStreams} </Text>
       <Text h4> Service: {selectedService} </Text>

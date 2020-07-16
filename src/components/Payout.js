@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, StyleSheet } from 'react-native';
+import { Text } from 'react-native-elements'
 import CalcContext from '../context/CalcContext'
 
 
@@ -23,7 +24,7 @@ const Payout = rate => {
 
   return(
     <View style={styles.totalText}>
-      <Text>For {time} month(s) you will get paid ${ totalMoney > 0 ? totalMoney.toFixed(2) : ''}</Text>
+      <Text h4>For {time} month(s) you will get paid ${ totalMoney > 0 ? totalMoney.toFixed(2) : ''}</Text>
     </View>
   )
 };
